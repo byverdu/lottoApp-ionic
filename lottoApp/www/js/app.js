@@ -30,19 +30,23 @@ angular.module( 'lottoApp', ['ionic', 'lottoApp.controllers', 'lottoApp.services
   // Set up the various states which the app can be in.
   // Each state's controller can be found in controllers.js
   $stateProvider
-  .state( 'tab2', {
-    abstract: true,
+  // .state( 'tab2', {
+  //   abstract: true,
+  //   url: '/lottoApp',
+  //   templateUrl: 'templates/tabs2.html'
+  // })
+  //   .state( 'tab2.home', {
+  //     url: '/home',
+  //     views: {
+  //       'tab-home': {
+  //         templateUrl: 'templates/tab-home.html'
+  //       }
+  //     }
+  //   })
+  .state( 'home', {
     url: '/lottoApp',
-    templateUrl: 'templates/tabs2.html'
+    templateUrl: 'templates/tab-home.html'
   })
-    .state( 'tab2.home', {
-      url: '/home',
-      views: {
-        'tab-home': {
-          templateUrl: 'templates/tab-home.html'
-        }
-      }
-    })
   // setup an abstract state for the tabs directive
     .state( 'tab', {
       url: '/lottoApp/raffle',
@@ -91,6 +95,6 @@ angular.module( 'lottoApp', ['ionic', 'lottoApp.controllers', 'lottoApp.services
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise( '/lottoApp/home' );
+  $urlRouterProvider.otherwise( '/lottoApp' );
 
 });
