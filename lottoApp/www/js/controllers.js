@@ -1,5 +1,10 @@
 angular.module( 'lottoApp.controllers', [])
-
+.controller( 'HomeCtrl', function($scope) {
+  $scope.lottos = [ 'primitiva', 'euro', 'bono' ];
+  $scope.lottoSelect = function(lottoId) {
+    console.log(lottoId);
+  }
+})
 .controller( 'DashCtrl', function($scope) {})
 
 .controller( 'ChatsCtrl', function($scope, Chats) {

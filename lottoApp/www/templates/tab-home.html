@@ -1,6 +1,11 @@
 <ion-view view-title="Home">
   <ion-content class="padding">
     <h1>hello lotto</h1>
-    <a href="#/lottoApp/raffle/dash">xoxo</a>
+    <ul>
+      <li ng-repeat="lotto in lottos">
+        <button ng-click="lottoSelect(lotto)" name="button">Go to {{lotto}}</button>
+        <a ng-href="#/lottoApp/{{lotto}}/dash">{{lotto}}</a>
+      </li>
+    </ul>
   </ion-content>
 </ion-view>
