@@ -8,8 +8,8 @@
 // rendering the correct layout/style for the specific platform
 // instead of waiting for the JS to figure out the correct classes.
 
-var fs = require('fs');
-var path = require('path');
+var fs = require( 'fs' );
+var path = require( 'path' );
 
 var rootdir = process.argv[2];
 
@@ -19,7 +19,7 @@ function addPlatformBodyTag(indexPath, platform) {
     var platformClass = 'platform-' + platform;
     var cordovaClass = 'platform-cordova platform-webview';
 
-    var html = fs.readFileSync(indexPath, 'utf8');
+    var html = fs.readFileSync(indexPath, 'utf8' );
 
     var bodyTag = findBodyTag(html);
     if(!bodyTag) return; // no opening body tag, something's wrong
@@ -38,14 +38,14 @@ function addPlatformBodyTag(indexPath, platform) {
 
     } else {
       // add class attribute to the body tag
-      newBodyTag = bodyTag.replace('>', ' class="' + platformClass + ' ' + cordovaClass + '">');
+      newBodyTag = bodyTag.replace( '>', ' class="' + platformClass + ' ' + cordovaClass + '">' );
     }
 
     html = html.replace(bodyTag, newBodyTag);
 
-    fs.writeFileSync(indexPath, html, 'utf8');
+    fs.writeFileSync(indexPath, html, 'utf8' );
 
-    process.stdout.write('add to body class: ' + platformClass + '\n');
+    process.stdout.write( 'add to body class: ' + platformClass + '\n' );
   } catch(e) {
     process.stdout.write(e);
   }
@@ -68,7 +68,7 @@ function findClassAttr(bodyTag) {
 if (rootdir) {
 
   // go through each of the platform directories that have been prepared
-  var platforms = (process.env.CORDOVA_PLATFORMS ? process.env.CORDOVA_PLATFORMS.split(',') : []);
+  var platforms = (process.env.CORDOVA_PLATFORMS ? process.env.CORDOVA_PLATFORMS.split( ',' ) : []);
 
   for(var x=0; x<platforms.length; x++) {
     // open up the index.html file at the www root
@@ -76,10 +76,10 @@ if (rootdir) {
       var platform = platforms[x].trim().toLowerCase();
       var indexPath;
 
-      if(platform == 'android') {
-        indexPath = path.join('platforms', platform, 'assets', 'www', 'index.html');
+      if(platform == 'android' ) {
+        indexPath = path.join( 'platforms', platform, 'assets', 'www', 'index.html' );
       } else {
-        indexPath = path.join('platforms', platform, 'www', 'index.html');
+        indexPath = path.join( 'platforms', platform, 'www', 'index.html' );
       }
 
       if(fs.existsSync(indexPath)) {
