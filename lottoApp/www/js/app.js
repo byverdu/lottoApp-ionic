@@ -36,23 +36,32 @@ angular.module( 'lottoApp', ['ionic', 'lottoApp.controllers', 'lottoApp.services
     controller: 'HomeCtrl'
   })
   // setup an abstract state for the tabs directive
-    .state( 'tab', {
-      url: '/lottoApp/:lottoId',
-      abstract: true,
-      templateUrl: 'templates/tabs.html'
-    })
-
-  // Each tab has its own nav history stack:
-
-  .state( 'tab.dash', {
-    url: '/dash',
+  .state( 'tab', {
+    url: '/lottoApp/:lottoID',
+    abstract: true,
+    templateUrl: 'templates/tabs.html'
+  })
+  .state( 'tab.raffle', {
+    url: '/raffle',
     views: {
-      'tab-dash': {
-        templateUrl: 'templates/tab-dash.html',
-        controller: 'DashCtrl'
+      'tab-raffle': {
+        templateUrl: 'templates/tab-raffle.html',
+        controller: 'RaffleCtrl'
       }
     }
   })
+
+  // Each tab has its own nav history stack:
+
+  // .state( 'tab.dash', {
+  //   url: '/dash',
+  //   views: {
+  //     'tab-dash': {
+  //       templateUrl: 'templates/tab-dash.html',
+  //       controller: 'DashCtrl'
+  //     }
+  //   }
+  // })
 
   .state( 'tab.chats', {
     url: '/chats',

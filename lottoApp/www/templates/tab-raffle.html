@@ -1,0 +1,24 @@
+<ion-view view-title="{{raffle.data.lottoID}}">
+  <ion-content class="padding">
+    <h2>{{raffle.data.lottoID}}</h2>
+    <span ng-repeat="ball in raffle.totalBalls">
+      <input
+        id="id_{{ball.ballValue}}"
+        type="checkbox"
+        ng-change="addBallToCombiToSave(ball)"
+        ng-model="ball.isChecked"
+      />
+      <label
+      class="homeLottoPage--{{ball.isChecked ? 'isChecked' : 'nop'}}"
+      for="id_{{ball.ballValue}}">
+      <span class="homeLottoPage__item--number">
+        {{ball.ballValue}}
+      </span>
+    </label>
+    </span>
+    <hr>
+    <span ng-repeat="combi in raffle.combiToSave">
+      {{combi.ballValue > 0 ? combi.ballValue : ''}}
+    </span>
+  </ion-content>
+</ion-view>
