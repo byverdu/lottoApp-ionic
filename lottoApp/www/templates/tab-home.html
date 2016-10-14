@@ -1,10 +1,8 @@
 <ion-view view-title="Home">
   <ion-content class="padding">
-    <h1>hello lotto</h1>
     <ul>
       <li ng-repeat="lotto in lottos">
-        <button ng-click="lottoSelect(lotto)" name="button">Go to {{lotto}}</button>
-        <a ng-href="#/lottoApp/{{lotto}}/dash">{{lotto}}</a>
+        <a class="button button-assertive button-block" ng-href="#/lottoApp/{{lotto}}/dash">Go to {{lotto}}</a>
       </li>
     </ul>
   </ion-content>
