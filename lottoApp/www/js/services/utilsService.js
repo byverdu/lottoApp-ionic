@@ -47,8 +47,29 @@ angular.module( 'lottoApp.services' )
       return tempArray;
     }
 
+    function getRandomBallsByLotto( lottoID ) {
+      const result = [];
+      const countBalls = getCountBalls( lottoID );
+      const totalBalls = getTotalBalls( lottoID );
+
+      while ( result.length < countBalls ) {
+        const valuesSaved = result.map( item => item.ballValue );
+        const randomValue = Math.floor( Math.random() * totalBalls ) + 1;
+
+        if ( valuesSaved.indexOf( randomValue ) === -1 ) {
+          const ball = new BallModel( randomValue );
+          ball.isChecked = true;
+          result.push( ball );
+        }
+      }
+      console.log( result, 'result getRandomBallsByLotto' );
+      return result.sort(( a, b ) => a.ballValue - b.ballValue );
+    }
+
     return {
+      BallModel,
+      getCountBalls,
       setArrayForBall,
-      BallModel
+      getRandomBallsByLotto
     };
   });

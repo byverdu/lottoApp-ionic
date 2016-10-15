@@ -1,22 +1,20 @@
 /* global angular */
-function getCountChecked( $scope ) {
-  return $scope.raffle.totalBalls.filter( item => item.isChecked ).length;
-}
-
-function getCountBalls( $scope ) {
-  return $scope.raffle.combiToSave.length;
-}
 
 function getBallValues( $scope ) {
   return $scope.raffle.combiToSave.map( combi => combi.ballValue );
 }
 
 function getCombiSorted( $scope ) {
-  return $scope.raffle.combiToSave.sort(( a,b ) => a.ballValue - b.ballValue );
+  return $scope.raffle.combiToSave.sort(( a, b ) => a.ballValue - b.ballValue );
 }
 
 angular.module( 'lottoApp.controllers' )
-  .controller( 'RaffleCtrl', function( $scope, $stateParams, httpService, utilsService ) {
+  .controller( 'RaffleCtrl', function (
+    $scope,
+    $stateParams,
+    httpService,
+    utilsService
+  ) {
     console.log($stateParams);
     httpService.getLottoById( $stateParams.lottoID ).then( data => {
       console.log(data);
@@ -24,15 +22,39 @@ angular.module( 'lottoApp.controllers' )
       $scope.raffle = {
         data: data.data[lottoID],
         combiToSave: utilsService.setArrayForBall( lottoID, 'count', false ),
-        totalBalls: utilsService.setArrayForBall( lottoID, 'total', true )
+        totalBalls: utilsService.setArrayForBall( lottoID, 'total', true ),
+        countBalls: utilsService.getCountBalls( lottoID )
+      };
+
+      $scope.getCountChecked = function () {
+        return $scope.raffle.totalBalls.filter( item => item.isChecked ).length;
       };
     });
 
+    $scope.getRandomBallsByLotto = function() {
+      const lottoID = $scope.raffle.data.lottoID;
+      $scope.raffle.combiToSave = utilsService.getRandomBallsByLotto( lottoID );
+
+      $scope.raffle.totalBalls.forEach( ball => {
+        const innerBall = ball;
+        if ( getBallValues( $scope ).indexOf( innerBall.ballValue ) !== -1 ) {
+          innerBall.isChecked = true;
+        } else {
+          innerBall.isChecked = false;
+        }
+      });
+    };
+
+    $scope.clearAndUncheck = function () {
+      const lottoID = $scope.raffle.data.lottoID;
+      $scope.raffle.combiToSave = utilsService.setArrayForBall( lottoID, 'count', false );
+      $scope.raffle.totalBalls.forEach( ball =>  ball.isChecked = false );
+    };
+
     $scope.addBallToCombiToSave = function(ball) {
-      console.log(ball);
 
       // avoid add a ball
-      if ( getCountChecked( $scope ) > getCountBalls( $scope )) {
+      if ( $scope.getCountChecked() > $scope.raffle.countBalls ) {
         const arrIndex = ball.ballValue - 1;
         $scope.raffle.totalBalls[arrIndex].isChecked = false;
         return;

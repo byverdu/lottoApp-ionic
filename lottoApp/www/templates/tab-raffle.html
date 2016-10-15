@@ -20,5 +20,25 @@
     <span ng-repeat="combi in raffle.combiToSave">
       {{combi.ballValue > 0 ? combi.ballValue : ''}}
     </span>
+    <div class="button-bar bar-positive">
+      <button
+        class="button"
+        ng-click="getRandomBallsByLotto()">
+          Random
+      </button>
+      <button
+        class="button"
+        ng-disabled="!(getCountChecked() === raffle.countBalls)"
+        ng-click="saveSelectedNumbers()">
+        Save
+      </button>
+      <button
+        class="button"
+        ng-disabled="!(getCountChecked() > 0)"
+        ng-click="clearAndUncheck()">
+        Clear
+      </button>
+    </div>
+  </div>
   </ion-content>
 </ion-view>
