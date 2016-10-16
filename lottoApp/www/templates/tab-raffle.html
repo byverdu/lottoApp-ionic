@@ -1,6 +1,11 @@
 <ion-view view-title="{{raffle.data.lottoID}}">
   <ion-content class="padding">
     <h2>{{raffle.data.lottoID}} {{combinations.length}}</h2>
+    <card-ball
+      title="Most repeated"
+      card-balls="raffle.data.mostRepeated"
+      is-toggle-card="true"
+    ></card-ball>
     <span ng-repeat="ball in raffle.totalBalls">
       <input
         id="id_{{ball.ballValue}}"
