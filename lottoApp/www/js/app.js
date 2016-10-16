@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'lottoApp.services' is found in services.js
 // 'lottoApp.controllers' is found in controllers.js
-angular.module( 'lottoApp', ['ionic', 'lottoApp.controllers', 'lottoApp.services'])
+angular.module( 'lottoApp', [ 'ionic', 'ngStorage', 'lottoApp.controllers', 'lottoApp.services'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {

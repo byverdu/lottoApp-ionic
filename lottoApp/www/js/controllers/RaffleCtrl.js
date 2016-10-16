@@ -13,31 +13,35 @@ angular.module( 'lottoApp.controllers' )
     $scope,
     $stateParams,
     httpService,
-    utilsService
+    utilsService,
+    storageService
   ) {
+    const mainCtrl = $scope;
     console.log($stateParams);
     httpService.getLottoById( $stateParams.lottoID ).then( data => {
       console.log(data);
       const lottoID = $stateParams.lottoID;
-      $scope.raffle = {
+      mainCtrl.raffle = {
         data: data.data[lottoID],
         combiToSave: utilsService.setArrayForBall( lottoID, 'count', false ),
         totalBalls: utilsService.setArrayForBall( lottoID, 'total', true ),
         countBalls: utilsService.getCountBalls( lottoID )
       };
 
-      $scope.getCountChecked = function () {
-        return $scope.raffle.totalBalls.filter( item => item.isChecked ).length;
+      mainCtrl.getCountChecked = function () {
+        return mainCtrl.raffle.totalBalls.filter( item => item.isChecked ).length;
       };
+      mainCtrl.combinations = storageService.getStorageForId( lottoID );
     });
+    storageService.setStorageForLottos();
 
-    $scope.getRandomBallsByLotto = function() {
-      const lottoID = $scope.raffle.data.lottoID;
-      $scope.raffle.combiToSave = utilsService.getRandomBallsByLotto( lottoID );
+    mainCtrl.getRandomBallsByLotto = function () {
+      const lottoID = mainCtrl.raffle.data.lottoID;
+      mainCtrl.raffle.combiToSave = utilsService.getRandomBallsByLotto( lottoID );
 
-      $scope.raffle.totalBalls.forEach( ball => {
+      mainCtrl.raffle.totalBalls.forEach( ball => {
         const innerBall = ball;
-        if ( getBallValues( $scope ).indexOf( innerBall.ballValue ) !== -1 ) {
+        if ( getBallValues( mainCtrl ).indexOf( innerBall.ballValue ) !== -1 ) {
           innerBall.isChecked = true;
         } else {
           innerBall.isChecked = false;
@@ -45,36 +49,42 @@ angular.module( 'lottoApp.controllers' )
       });
     };
 
-    $scope.clearAndUncheck = function () {
-      const lottoID = $scope.raffle.data.lottoID;
-      $scope.raffle.combiToSave = utilsService.setArrayForBall( lottoID, 'count', false );
-      $scope.raffle.totalBalls.forEach( ball =>  ball.isChecked = false );
+    mainCtrl.saveSelectedNumbers = function () {
+      const lottoID = mainCtrl.raffle.data.lottoID;
+      const combi = mainCtrl.raffle.combiToSave;
+      storageService.setStorageForId( lottoID, combi );
+      mainCtrl.clearAndUncheck();
     };
 
-    $scope.addBallToCombiToSave = function(ball) {
+    mainCtrl.clearAndUncheck = function () {
+      const lottoID = mainCtrl.raffle.data.lottoID;
+      mainCtrl.raffle.combiToSave = utilsService.setArrayForBall( lottoID, 'count', false );
+      mainCtrl.raffle.totalBalls.forEach( ball =>  ball.isChecked = false );
+    };
 
+    mainCtrl.addBallToCombiToSave = function ( ball ) {
       // avoid add a ball
-      if ( $scope.getCountChecked() > $scope.raffle.countBalls ) {
+      if ( mainCtrl.getCountChecked() > mainCtrl.raffle.countBalls ) {
         const arrIndex = ball.ballValue - 1;
-        $scope.raffle.totalBalls[arrIndex].isChecked = false;
+        mainCtrl.raffle.totalBalls[arrIndex].isChecked = false;
         return;
       }
 
       const numberConverted = Number( ball.ballValue );
-      const lastZeroItem = getBallValues( $scope ).lastIndexOf( 0 );
-      const indexChecked = getBallValues( $scope ).indexOf( numberConverted );
+      const lastZeroItem = getBallValues( mainCtrl ).lastIndexOf( 0 );
+      const indexChecked = getBallValues( mainCtrl ).indexOf( numberConverted );
 
       if ( indexChecked === -1 ) {
         const tempObject = {
           ballValue: ball.ballValue,
           isChecked: ball.isChecked
         }
-        Object.assign( $scope.raffle.combiToSave[lastZeroItem], tempObject );
-        getCombiSorted( $scope );
+        Object.assign( mainCtrl.raffle.combiToSave[lastZeroItem], tempObject );
+        getCombiSorted( mainCtrl );
       } else {
-        $scope.raffle.combiToSave.splice( indexChecked, 1, new utilsService.BallModel( 0 ));
-        getCombiSorted( $scope );
+        mainCtrl.raffle.combiToSave.splice( indexChecked, 1, new utilsService.BallModel( 0 ));
+        getCombiSorted( mainCtrl );
       }
-      console.log($scope.raffle.combiToSave,'addBallToCombiToSave')
+      console.log(mainCtrl.raffle.combiToSave,'addBallToCombiToSave')
     }
   });
