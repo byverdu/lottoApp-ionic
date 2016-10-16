@@ -1,0 +1,11 @@
+/* Empty. Add your own CSS if you like */
+
+.homeLottoPage--isChecked {
+  color: green;
+  font-size: 18px;
+}
+
+.homeLottoPage--nop {
+  color: purple;
+  font-size: 18px;
+}

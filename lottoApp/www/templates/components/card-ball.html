@@ -1,0 +1,28 @@
+<div class="card">
+    <div class="item item-divider">
+      <h3>{{title}}</h3>
+      <span class="cardToggle">
+        <span class="cardToggle__text">{{isToggleCard ? 'Hide' : 'Show'}}</span>
+        <label class="toggle toggle-positive">
+          <input
+            ng-model="isToggleCard"
+            type="checkbox"
+          >
+          <div class="track">
+            <div class="handle"></div>
+          </div>
+        </label>
+      </span>
+    </div>
+    <div class="item ${isToggleCard ? 'isExpanded' : 'isCollapsed'}" ng-show="isToggleCard">
+      <ul class="cardToggle__list cardToggle__cardBalls">
+        <li class="cardToggle__item" ng-repeat="combi in cardBalls track by $index">
+          <section class="stage">
+            <figure class="ball ball--unactive">
+            </figure>
+          </section>
+          <span class="cardToggle__cardBalls--combi">{{combi}}</span>
+        </li>
+      </ul>
+    </div>
+  </div>

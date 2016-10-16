@@ -1,0 +1,20 @@
+<div class="button-bar bar-positive">
+  <button
+    class="button"
+    ng-click="firstCall()">
+      {{firstText}}
+  </button>
+  <button
+    class="button"
+    ng-disabled="!(countChecked() > 0)"
+    ng-click="secondCall()">
+    {{secondText}}
+  </button>
+  <button
+    ng-if="thirdText !== undefined"
+    class="button"
+    ng-disabled="!(countChecked() === countBalls)"
+    ng-click="thirdCall()">
+    {{thirdText}}
+  </button>
+</div>
