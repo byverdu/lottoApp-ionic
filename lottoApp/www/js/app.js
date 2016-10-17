@@ -39,7 +39,11 @@ angular.module( 'lottoApp', [ 'ionic', 'ngStorage', 'lottoApp.controllers', 'lot
   .state( 'tab', {
     url: '/lottoApp/:lottoID',
     abstract: true,
-    templateUrl: 'templates/tabs.html'
+    cache: false,
+    templateUrl: 'templates/tabs.html',
+    controller: function( $scope, $stateParams ) {
+      $scope.lottoID = $stateParams.lottoID;
+    }
   })
   .state( 'tab.raffle', {
     url: '/raffle',
@@ -47,6 +51,15 @@ angular.module( 'lottoApp', [ 'ionic', 'ngStorage', 'lottoApp.controllers', 'lot
       'tab-raffle': {
         templateUrl: 'templates/tab-raffle.html',
         controller: 'RaffleCtrl'
+      }
+    }
+  })
+  .state( 'tab.results', {
+    url: '/results',
+    views: {
+      'tab-results': {
+        templateUrl: 'templates/tab-results.html',
+        controller: 'ResultsCtrl'
       }
     }
   })
