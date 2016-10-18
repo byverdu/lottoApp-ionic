@@ -12,29 +12,17 @@ angular.module( 'lottoApp.controllers' )
   .controller( 'RaffleCtrl', function (
     $scope,
     $stateParams,
-    httpService,
     utilsService,
+    sharedData,
     storageService
   ) {
     const mainCtrl = $scope;
-    console.log($stateParams);
-    httpService.getLottoById( $stateParams.lottoID ).then( data => {
-      console.log(data);
-      const lottoID = $stateParams.lottoID;
-      mainCtrl.raffle = {
-        data: data.data[lottoID],
-        combiToSave: utilsService.setArrayForBall( lottoID, 'count', false ),
-        totalBalls: utilsService.setArrayForBall( lottoID, 'total', true ),
-        countBalls: utilsService.getCountBalls( lottoID )
-      };
-
-      mainCtrl.getCountChecked = function () {
-        return mainCtrl.raffle.totalBalls.filter( item => item.isChecked ).length;
-      };
-      mainCtrl.combinations = storageService.getStorageForId( lottoID );
-    });
+    mainCtrl.raffle = sharedData.getData();
+    mainCtrl.getCountChecked = function () {
+      return mainCtrl.raffle.totalBalls.filter( item => item.isChecked ).length;
+    };
+    console.log($scope, 'RaffleCtrl');
     storageService.setStorageForLottos();
-
     mainCtrl.getRandomBallsByLotto = function () {
       const lottoID = mainCtrl.raffle.data.lottoID;
       mainCtrl.raffle.combiToSave = utilsService.getRandomBallsByLotto( lottoID );
@@ -86,5 +74,5 @@ angular.module( 'lottoApp.controllers' )
         getCombiSorted( mainCtrl );
       }
       console.log(mainCtrl.raffle.combiToSave,'addBallToCombiToSave')
-    }
+    };
   });

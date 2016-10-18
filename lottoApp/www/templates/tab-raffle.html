@@ -1,6 +1,7 @@
-<ion-view view-title="{{raffle.data.lottoID}}">
+<ion-view>
+  <ion-nav-title>{{raffle.data.lottoID}}</ion-nav-title>
   <ion-content class="padding">
-    <h2>{{raffle.data.lottoID}} {{combinations.length}}</h2>
+    <h2>{{raffle.data.lottoID}} {{raffle.combinations.length}}</h2>
     <card-ball
       title="Most repeated"
       card-balls="raffle.data.mostRepeated"

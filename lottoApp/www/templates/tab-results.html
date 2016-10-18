@@ -2,28 +2,9 @@
   <ion-content class="padding">
     <card-ball
       title="Last Result"
-      card-balls="raffle.data.mostRepeated"
+      card-balls="raffle.data.lastResult"
       is-toggle-card="true"
     ></card-ball>
-    <span ng-repeat="ball in raffle.totalBalls">
-      <input
-        id="id_{{ball.ballValue}}"
-        type="checkbox"
-        ng-change="addBallToCombiToSave(ball)"
-        ng-model="ball.isChecked"
-      />
-      <label
-      class="homeLottoPage--{{ball.isChecked ? 'isChecked' : 'nop'}}"
-      for="id_{{ball.ballValue}}">
-      <span class="homeLottoPage__item--number">
-        {{ball.ballValue}}
-      </span>
-    </label>
-    </span>
-    <hr>
-    <span ng-repeat="combi in raffle.combiToSave">
-      {{combi.ballValue > 0 ? combi.ballValue : ''}}
-    </span>
     <action-buttons
       first-call="getRandomBallsByLotto()"
       first-text="Check Raffles"

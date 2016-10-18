@@ -41,12 +41,11 @@ angular.module( 'lottoApp', [ 'ionic', 'ngStorage', 'lottoApp.controllers', 'lot
     abstract: true,
     cache: false,
     templateUrl: 'templates/tabs.html',
-    controller: function( $scope, $stateParams ) {
-      $scope.lottoID = $stateParams.lottoID;
-    }
+    controller: 'TabCtrl'
   })
   .state( 'tab.raffle', {
     url: '/raffle',
+    // cache: true,
     views: {
       'tab-raffle': {
         templateUrl: 'templates/tab-raffle.html',
@@ -56,6 +55,7 @@ angular.module( 'lottoApp', [ 'ionic', 'ngStorage', 'lottoApp.controllers', 'lot
   })
   .state( 'tab.results', {
     url: '/results',
+    // cache: true,
     views: {
       'tab-results': {
         templateUrl: 'templates/tab-results.html',
@@ -63,37 +63,6 @@ angular.module( 'lottoApp', [ 'ionic', 'ngStorage', 'lottoApp.controllers', 'lot
       }
     }
   })
-
-  // Each tab has its own nav history stack:
-
-  // .state( 'tab.dash', {
-  //   url: '/dash',
-  //   views: {
-  //     'tab-dash': {
-  //       templateUrl: 'templates/tab-dash.html',
-  //       controller: 'DashCtrl'
-  //     }
-  //   }
-  // })
-
-  .state( 'tab.chats', {
-    url: '/chats',
-    views: {
-      'tab-chats': {
-        templateUrl: 'templates/tab-chats.html',
-        controller: 'ChatsCtrl'
-      }
-    }
-  })
-    .state( 'tab.chat-detail', {
-      url: '/chats/:chatId',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/chat-detail.html',
-          controller: 'ChatDetailCtrl'
-        }
-      }
-    })
   .state( 'tab.account', {
     url: '/account',
     views: {

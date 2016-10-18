@@ -9,3 +9,7 @@
   color: purple;
   font-size: 18px;
 }
+
+.tabs {
+  bottom: 24px !important
+}
