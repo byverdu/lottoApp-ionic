@@ -63,7 +63,7 @@ angular.module( 'lottoApp.services' )
         }
       }
       console.log( result, 'result getRandomBallsByLotto' );
-      return result.sort(( a, b ) => a.ballValue - b.ballValue );
+      return result;
     }
 
     return {

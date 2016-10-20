@@ -1,3 +1,3 @@
 ## lottoApp ionic
 
-The says everything :rocket: :smile:
+The name says everything :rocket: :smile:

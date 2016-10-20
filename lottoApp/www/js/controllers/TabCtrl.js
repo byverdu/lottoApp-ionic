@@ -9,6 +9,7 @@ angular.module( 'lottoApp.controllers', [])
     utilsService,
     storageService
   ) {
+    storageService.setStorageForLottos();
     $scope.lottoID = $stateParams.lottoID;
     httpService.getLottoById( $stateParams.lottoID ).then( data => {
       console.log(data);

@@ -23,7 +23,7 @@
     </label>
     </span>
     <hr>
-    <span ng-repeat="combi in raffle.combiToSave">
+    <span ng-repeat="combi in raffle.combiToSave | orderBy:'ballValue' ">
       {{combi.ballValue > 0 ? combi.ballValue : ''}}
     </span>
     <action-buttons

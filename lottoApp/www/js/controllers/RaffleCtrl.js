@@ -4,10 +4,6 @@ function getBallValues( $scope ) {
   return $scope.raffle.combiToSave.map( combi => combi.ballValue );
 }
 
-function getCombiSorted( $scope ) {
-  return $scope.raffle.combiToSave.sort(( a, b ) => a.ballValue - b.ballValue );
-}
-
 angular.module( 'lottoApp.controllers' )
   .controller( 'RaffleCtrl', function (
     $scope,
@@ -22,7 +18,7 @@ angular.module( 'lottoApp.controllers' )
       return mainCtrl.raffle.totalBalls.filter( item => item.isChecked ).length;
     };
     console.log($scope, 'RaffleCtrl');
-    storageService.setStorageForLottos();
+
     mainCtrl.getRandomBallsByLotto = function () {
       const lottoID = mainCtrl.raffle.data.lottoID;
       mainCtrl.raffle.combiToSave = utilsService.getRandomBallsByLotto( lottoID );
@@ -66,13 +62,11 @@ angular.module( 'lottoApp.controllers' )
         const tempObject = {
           ballValue: ball.ballValue,
           isChecked: ball.isChecked
-        }
+        };
         Object.assign( mainCtrl.raffle.combiToSave[lastZeroItem], tempObject );
-        getCombiSorted( mainCtrl );
       } else {
         mainCtrl.raffle.combiToSave.splice( indexChecked, 1, new utilsService.BallModel( 0 ));
-        getCombiSorted( mainCtrl );
       }
-      console.log(mainCtrl.raffle.combiToSave,'addBallToCombiToSave')
+      console.log( mainCtrl.raffle.combiToSave, 'addBallToCombiToSave' );
     };
   });
