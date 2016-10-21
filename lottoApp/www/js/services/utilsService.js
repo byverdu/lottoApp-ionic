@@ -63,12 +63,19 @@ angular.module( 'lottoApp.services' )
         }
       }
       console.log( result, 'result getRandomBallsByLotto' );
-      return result;
+      return result.sort(( a, b ) => a.ballValue - b.ballValue );
     }
 
     function stringsToNumbers( singleString ) {
-      const tempArray = singleString.split(',');
-      return tempArray.map( item => Number(item));
+      const tempArray = singleString.split( ',' );
+      return tempArray.map( item => Number( item ));
+    }
+
+    function addStringZero ( ball ) {
+      if ( ball === 0 ) {
+        return '';
+      }
+      return ball <= 9 ? `0${ball}` : ball;
     }
 
     return {
@@ -76,6 +83,7 @@ angular.module( 'lottoApp.services' )
       getCountBalls,
       setArrayForBall,
       getRandomBallsByLotto,
-      stringsToNumbers
+      stringsToNumbers,
+      addStringZero
     };
   });

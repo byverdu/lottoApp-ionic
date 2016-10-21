@@ -42,7 +42,6 @@ angular.module( 'lottoApp', moduleDepen )
   })
   .state( 'tab.raffle', {
     url: '/raffle',
-    // cache: true,
     views: {
       'tab-raffle': {
         templateUrl: 'templates/tab-raffle.html',
@@ -52,7 +51,6 @@ angular.module( 'lottoApp', moduleDepen )
   })
   .state( 'tab.results', {
     url: '/results',
-    // cache: true,
     views: {
       'tab-results': {
         templateUrl: 'templates/tab-results.html',

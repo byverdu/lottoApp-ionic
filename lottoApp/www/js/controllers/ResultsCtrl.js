@@ -1,11 +1,13 @@
 /* global angular */
 
 angular.module( 'lottoApp.controllers' )
-  .controller( 'ResultsCtrl', function( $scope , sharedData) {
+  .controller( 'ResultsCtrl', function( $scope , sharedData, utilsService ) {
     const resultCtrl = $scope;
     resultCtrl.raffle = sharedData.getData();
     console.log(resultCtrl, '$scope.raffle ResultsCtrl');
 
+    resultCtrl.addStringZero = utilsService.addStringZero;
+    
      resultCtrl.compareLastResultWithSaved = function() {
     const lastResultNumbers = this.raffleType.lastResultNumbers;
     if (lastResultNumbers === undefined || this.combinations === undefined) {
