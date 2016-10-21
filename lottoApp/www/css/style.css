@@ -1,11 +1,13 @@
 /* Empty. Add your own CSS if you like */
 
-.homeLottoPage--isChecked {
+.homeLottoPage--isChecked,
+.ball--active {
   color: green;
   font-size: 18px;
 }
 
-.homeLottoPage--nop {
+.homeLottoPage--nop,
+.ball--unactive {
   color: purple;
   font-size: 18px;
 }

@@ -19,7 +19,9 @@ angular.module( 'lottoApp.controllers', [])
         combiToSave: utilsService.setArrayForBall( lottoID, 'count', false ),
         totalBalls: utilsService.setArrayForBall( lottoID, 'total', true ),
         countBalls: utilsService.getCountBalls( lottoID ),
-        combinations: storageService.getStorageForId( lottoID )
+        combinations: storageService.getStorageForId( lottoID ),
+        mostRepeated: utilsService.stringsToNumbers(data.data[lottoID].mostRepeated),
+        lastResult: utilsService.stringsToNumbers(data.data[lottoID].lastResult)
       };
       sharedData.setData( raffle );
     });

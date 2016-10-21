@@ -69,4 +69,11 @@ angular.module( 'lottoApp.controllers' )
       }
       console.log( mainCtrl.raffle.combiToSave, 'addBallToCombiToSave' );
     };
+
+    mainCtrl.addStringZero = function( ball ) {
+      if ( ball === 0 ) {
+        return '';
+      }
+      return ball <= 9 ? `0${ball}` : ball;
+    }
   });

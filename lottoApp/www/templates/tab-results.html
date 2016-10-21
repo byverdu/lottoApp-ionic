@@ -2,7 +2,7 @@
   <ion-content class="padding">
     <card-ball
       title="Last Result"
-      card-balls="raffle.data.lastResult"
+      card-balls="raffle.lastResult"
       is-toggle-card="true"
     ></card-ball>
     <action-buttons
@@ -12,5 +12,24 @@
       second-text="Clear"
     ></action-buttons>
   </div>
+  <ul class="list">
+        <li class="item item-divider">
+          Showing {{indexRowMatch.length > 0 ? indexRowMatch.length : raffle.combinations.length} of <span textcontent.two-way="totalCombinations"></span>
+        </li>
+        <li class="resultsPage__item item" ng-repeat="combis in raffle.combinations" id="${'id_'+$index}">
+          <section class="stage" ng-repeat="number in combis | addStringZero:number.ballValue">
+            <figure class="ball ball${number.isChecked ? '--active' : '--unactive'}">
+            </figure>
+            <span class="resultsPage__item--combi">
+              {{number.ballValue}}
+            </span>
+          </section>
+          <button
+            class="button button-assertive button-small"
+            click.trigger="deleteCombiFromStore($index)">
+            Delete
+          </button>
+        </li>
+    </ul>
   </ion-content>
 </ion-view>

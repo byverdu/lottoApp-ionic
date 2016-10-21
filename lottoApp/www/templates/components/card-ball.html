@@ -16,7 +16,7 @@
     </div>
     <div class="item ${isToggleCard ? 'isExpanded' : 'isCollapsed'}" ng-show="isToggleCard">
       <ul class="cardToggle__list cardToggle__cardBalls">
-        <li class="cardToggle__item" ng-repeat="combi in cardBalls track by $index">
+        <li class="cardToggle__item" ng-repeat="combi in cardBalls | addStringZero:combi track by $index">
           <section class="stage">
             <figure class="ball ball--unactive">
             </figure>
