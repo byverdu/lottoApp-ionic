@@ -1,7 +1,7 @@
 /* global angular */
 
 angular.module( 'lottoApp.controllers', [])
-  .controller( 'TabCtrl', function(
+  .controller( 'TabCtrl', function (
     $scope,
     $stateParams,
     sharedData,
@@ -12,7 +12,7 @@ angular.module( 'lottoApp.controllers', [])
     storageService.setStorageForLottos();
     $scope.lottoID = $stateParams.lottoID;
     httpService.getLottoById( $stateParams.lottoID ).then( data => {
-      console.log(data);
+      console.log( data );
       const lottoID = $stateParams.lottoID;
       const raffle = {
         data: data.data[lottoID],
@@ -20,8 +20,8 @@ angular.module( 'lottoApp.controllers', [])
         totalBalls: utilsService.setArrayForBall( lottoID, 'total', true ),
         countBalls: utilsService.getCountBalls( lottoID ),
         combinations: storageService.getStorageForId( lottoID ),
-        mostRepeated: utilsService.stringsToNumbers(data.data[lottoID].mostRepeated),
-        lastResult: utilsService.stringsToNumbers(data.data[lottoID].lastResult)
+        mostRepeated: utilsService.stringsToNumbers( data.data[lottoID].mostRepeated ),
+        lastResult: utilsService.stringsToNumbers( data.data[lottoID].lastResult )
       };
       sharedData.setData( raffle );
     });

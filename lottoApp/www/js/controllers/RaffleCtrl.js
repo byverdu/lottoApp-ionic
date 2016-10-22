@@ -36,6 +36,7 @@ angular.module( 'lottoApp.controllers' )
     mainCtrl.saveSelectedNumbers = function () {
       const lottoID = mainCtrl.raffle.data.lottoID;
       const combi = mainCtrl.raffle.combiToSave;
+      combi.forEach( item => item.isChecked = false );
       storageService.setStorageForId( lottoID, combi );
       mainCtrl.clearAndUncheck();
     };

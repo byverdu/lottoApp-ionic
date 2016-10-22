@@ -6,27 +6,32 @@
       is-toggle-card="true"
     ></card-ball>
     <action-buttons
-      first-call="getRandomBallsByLotto()"
+      first-call="compareLastResultWithSaved()"
       first-text="Check Raffles"
-      second-call="clearAndUncheck()"
+      second-call="clearCompared()"
       second-text="Clear"
+      count-checked="1"
     ></action-buttons>
   </div>
   <ul class="list">
         <li class="item item-divider">
-          Showing {{indexRowMatch.length > 0 ? indexRowMatch.length : raffle.combinations.length} of <span textcontent.two-way="totalCombinations"></span>
+          Showing {{containsMatched.length > 0 ? containsMatched.length : raffle.combinations.length}} of {{raffle.combinations.length}}
         </li>
-        <li class="resultsPage__item item" ng-repeat="combis in raffle.combinations" id="${'id_'+$index}">
-          <section class="stage" ng-repeat="number in combis | addStringZero:number.ballValue">
-            <figure class="ball ball${number.isChecked ? '--active' : '--unactive'}">
+        <li
+          ng-show="containsMatched.length === 0 || containsMatched.indexOf($index) !== -1"
+          class="resultsPage__item item"
+          ng-repeat="combis in raffle.combinations"
+          id="{{'id_'+$index}}">
+          <section class="stage" ng-repeat="number in combis">
+            <figure class="ball">
             </figure>
-            <span class="resultsPage__item--combi">
+            <span class="resultsPage__item--combi ball{{number.isChecked ? '--active' : '--unactive'}}">
               {{addStringZero(number.ballValue)}}
             </span>
           </section>
           <button
             class="button button-assertive button-small"
-            click.trigger="deleteCombiFromStore($index)">
+            ng-click="deleteCombiFromStore($index)">
             Delete
           </button>
         </li>

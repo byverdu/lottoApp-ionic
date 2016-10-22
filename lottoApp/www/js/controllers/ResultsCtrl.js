@@ -1,35 +1,50 @@
 /* global angular */
 
 angular.module( 'lottoApp.controllers' )
-  .controller( 'ResultsCtrl', function( $scope , sharedData, utilsService ) {
+  .controller( 'ResultsCtrl', function(
+    $scope,
+    sharedData,
+    utilsService,
+    storageService
+  ) {
     const resultCtrl = $scope;
     resultCtrl.raffle = sharedData.getData();
+    resultCtrl.containsMatched = [];
     console.log(resultCtrl, '$scope.raffle ResultsCtrl');
 
     resultCtrl.addStringZero = utilsService.addStringZero;
-    
-     resultCtrl.compareLastResultWithSaved = function() {
-    const lastResultNumbers = this.raffleType.lastResultNumbers;
-    if (lastResultNumbers === undefined || this.combinations === undefined) {
-      return;
-    }
-    for (const index in this.combinations) {
-      this.combinations[index].forEach(item => {
-        if ( lastResultNumbers.indexOf(item.value) !== -1 ) {
-          item.isChecked = true;
-          if (this.indexRowMatch.indexOf(index) === -1) {
-            this.indexRowMatch.push(index);
+    resultCtrl.compareLastResultWithSaved = function() {
+      const lastResult = resultCtrl.raffle.lastResult;
+      const combinations = resultCtrl.raffle.combinations;
+      if ( lastResult === undefined || combinations === undefined ) {
+        return;
+      }
+
+      combinations.forEach(( combi, index ) => {
+        combi.forEach( ball => {
+          if ( lastResult.indexOf( ball.ballValue ) !== -1 ) {
+            ball.isChecked = true;
+            if ( resultCtrl.containsMatched.indexOf( index ) === -1 ) {
+              resultCtrl.containsMatched.push( index );
+            }
           }
-        };
+        });
       });
-    }
-    // hiding those rows that doesn't contains selected
-    this.buildArrayCombLength()
-      .filter(
-        item => this.indexRowMatch.indexOf(item) === -1
-      )
-      .forEach(
-        item => jQuery(`#id_${item}`).hide()
-      );
-  }
+    };
+
+    resultCtrl.clearCompared = function () {
+      const combinations = resultCtrl.raffle.combinations;
+      if ( combinations === undefined ) {
+        return;
+      }
+      combinations.forEach( combi => {
+        combi.forEach( ball => ball.isChecked = false );
+      });
+      resultCtrl.containsMatched = [];
+    };
+
+    resultCtrl.deleteCombiFromStore = function ( index ) {
+      const lottoID = resultCtrl.raffle.data.lottoID;
+      storageService.removeItemForId( lottoID, index );
+    };
   });
