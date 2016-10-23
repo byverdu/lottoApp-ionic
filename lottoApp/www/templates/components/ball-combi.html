@@ -1,0 +1,7 @@
+<section class="stage" ng-repeat="number in combis">
+  <figure class="ball ball{{number.isChecked ? '--active' : '--unactive'}}">
+  </figure>
+  <span class="resultsPage__item--combi">
+    {{addZero(number.ballValue)}}
+  </span>
+</section>

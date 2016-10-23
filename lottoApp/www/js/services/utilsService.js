@@ -71,7 +71,7 @@ angular.module( 'lottoApp.services' )
       return tempArray.map( item => Number( item ));
     }
 
-    function addStringZero ( ball ) {
+    function addStringZero( ball ) {
       if ( ball === 0 ) {
         return '';
       }

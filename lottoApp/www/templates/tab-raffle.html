@@ -1,31 +1,66 @@
 <ion-view>
   <ion-nav-title>{{raffle.data.lottoID}}</ion-nav-title>
   <ion-content class="padding">
-    <h2>{{raffle.data.lottoID}} {{raffle.combinations.length}}</h2>
     <card-ball
       title="Most repeated"
       card-balls="raffle.mostRepeated"
       is-toggle-card="true"
     ></card-ball>
-    <span ng-repeat="ball in raffle.totalBalls">
-      <input
-        id="id_{{ball.ballValue}}"
-        type="checkbox"
-        ng-change="addBallToCombiToSave(ball)"
-        ng-model="ball.isChecked"
-      />
-      <label
-      class="homeLottoPage--{{ball.isChecked ? 'isChecked' : 'nop'}}"
-      for="id_{{ball.ballValue}}">
-      <span class="homeLottoPage__item--number">
-        {{addStringZero(ball.ballValue)}}
-      </span>
-    </label>
-    </span>
-    <hr>
-    <span ng-repeat="combi in raffle.combiToSave | orderBy:'ballValue' track by $index ">
-      {{addStringZero(combi.ballValue)}}
-    </span>
+    <div class="card">
+      <div class="item item-divider">
+        <h3>
+          Select your combination
+          <span class="item-note">Saved:</span>
+          <span class="badge badge-positive">
+            {{raffle.combinations.length}}
+          </span>
+        </h3>
+      </div>
+      <div class="item item-body">
+        <ul class="homeLottoPage__list">
+          <li
+            ng-repeat="ball in raffle.totalBalls"
+            class="homeLottoPage__item"
+          >
+            <section class="stage">
+              <figure
+                class="ball ball{{ball.isChecked ? '--active' : '--unactive'}}"
+              >
+                <span class="shadow"></span>
+              </figure>
+              <input
+                id="id_{{ball.ballValue}}"
+                type="checkbox"
+                ng-change="addBallToCombiToSave(ball)"
+                ng-model="ball.isChecked"
+              />
+              <label
+                class="homeLottoPage__item--label"
+                for="id_{{ball.ballValue}}">
+                <span class="homeLottoPage__item--number">
+                  {{addStringZero(ball.ballValue)}}
+                </span>
+              </label>
+            </section>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="card homeLottoPage__cardBalls">
+      <div class="item item-divider">
+        <h3>Your numbers</h3>
+      </div>
+      <div class="item item-body">
+        <ul class="homeLottoPage__list">
+          <li class="homeLottoPage__item">
+            <ball-combi
+              combis="raffle.combiToSave"
+              add-zero="addStringZero"
+            ></ball-combi>
+          </li>
+        </ul>
+      </div>
+    </div>
     <action-buttons
       first-call="getRandomBallsByLotto()"
       first-text="Random"

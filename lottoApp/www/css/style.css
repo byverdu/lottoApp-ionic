@@ -1,21 +1,234 @@
 /* Empty. Add your own CSS if you like */
 
-.homeLottoPage--isChecked,
-.ball--active{
-  color: green;
-  font-size: 18px;
+input[type="checkbox"] {
+  visibility: hidden;
 }
-
-.homeLottoPage--nop,
-.ball--unactive{
-  color: purple;
-  font-size: 18px;
-}
-
 .tabs {
   bottom: 24px !important
 }
 
-section.stage.statsPage__item {
-    display: inline-block;
+.winnersTable {
+  margin: 0 auto;
+  font-size: 13px;
+}
+.winnersTable th,
+.winnersTable td {
+  text-align: center;
+  padding: 3px;
+}
+.winnersTable th {
+  border-bottom: 1px solid #ccc;
+  border-top: 1px solid #ccc;
+}
+.winnersTable tbody tr:nth-child(odd) {
+  background-color: #f5f5f5;
+}
+
+.ball {
+  display: block;
+  background: black;
+  margin: 0;
+  border-radius: 50%;
+  height: 35px;
+  width: 35px;
+}
+.ball--unactive {
+  background: radial-gradient(circle at 16px 16px, #5cabff, #4c4c4c);
+}
+.ball--active {
+  background: radial-gradient(circle at 16px 16px, red, #4c4c4c);
+}
+.ball--greenItem {
+  background: radial-gradient(circle at 16px 16px, green, #4c4c4c);
+}
+.ball--redItem {
+  background: radial-gradient(circle at 16px 16px, red, #4c4c4c);
+}
+.ball--orangeItem {
+  background: radial-gradient(circle at 16px 16px, orange, #4c4c4c);
+}
+
+.ball .shadow {
+  position: absolute;
+  left: -4px;
+  top: -4px;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1) 40%, transparent 50%);
+  transform: rotateX(80deg) translateZ(-18px);
+  z-index: -1;
+}
+
+.stage {
+  width: 36px;
+  height: 50px;
+  perspective: 1200px;
+  perspective-origin: 50% 50%;
+  display: inline-block;;
+}
+
+.cardToggle {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
+.cardToggle__text {
+  position: relative;
+  top: -5px;
+  right: 10px;
+}
+.cardToggle .toggle .handle {
+  width: 18px;
+  height: 19px;
+  top: 8px;
+  left: 5px;
+}
+.cardToggle .toggle .track {
+  width: 40px;
+  height: 25px;
+}
+.cardToggle__list {
+  list-style: none;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin: 0;
+}
+.cardToggle__item {
+  display: inline-block;
+  position: relative;
+  margin: 0 auto;
+}
+.cardToggle__item:last-child {
+  margin-left: 0;
+}
+.cardToggle__cardBalls--combi {
+  position: absolute;
+  top: 7px;
+  color: white;
+  width: 20px;
+  left: 9px;
+}
+.cardToggle__cardBalls .stage {
+  height: 35px;
+}
+
+.homePage {
+  transform: translateY(50%);
+}
+.homePage__raffle {
+  margin: 45px 0;
+}
+
+.homeLottoPage__list {
+  list-style: none;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin: 0;
+}
+.homeLottoPage__item {
+  display: inline-block;
+  position: relative;
+  margin: 0;
+}
+.homeLottoPage__item:last-child {
+  margin-left: 0;
+}
+.homeLottoPage__item--label {
+  position: absolute;
+  color: white;
+  top: 0;
+  left: 0;
+  width: 45px;
+  height: 45px;
+}
+.homeLottoPage__item--number {
+  font-size: 16px;
+  position: relative;
+  top: 6px;
+  left: 9px;
+}
+.homeLottoPage__cardBalls--combi {
+  position: absolute;
+  top: 7px;
+  color: white;
+  width: 20px;
+  left: 9px;
+}
+.homeLottoPage__cardBalls .stage {
+  height: 35px;
+  margin: 0 6px;
+}
+.homeLottoPage .item .badge {
+  right: 10px;
+}
+.homeLottoPage .item-note {
+  margin-right: 30px;
+}
+.homeLottoPage .button-bar {
+  padding: 10px;
+}
+
+.resultsPage__item {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin: 0;
+}
+.resultsPage__item .stage {
+  margin: 0 auto;
+  height: 35px;
+  margin: 0 2px;
+  /*display: inline-block*/
+}
+.resultsPage__item--combi {
+  position: absolute;
+  top: 7px;
+  color: white;
+  width: 20px;
+  left: 9px;
+}
+
+.statsPage__item {
+  display: inline-block;
+  margin: 0 9px;
+}
+.statsPage__item .stage {
+  margin: 0 auto;
+  height: 35px;
+}
+.statsPage__item--combi {
+  position: absolute;
+  top: 5px;
+  color: #fff;
+  left: 10px;
+  font-size: 15px;
+}
+.statsPage__item--count {
+  font-size: 11px;
+  position: absolute;
+  top: 27px;
+  border: 1px solid;
+  border-radius: 5px;
+  padding: 0 8px;
+  background: #fff;
+  left: 3px;
+}
+
+.has-header {
+  top: 20px;
+}
+
+.item-note {
+  float: none;
+  margin-left: 60px;
+}
+
+.item.item-divider .badge {
+  top: 5px;
+  right: 5px;
 }
