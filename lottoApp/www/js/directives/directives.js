@@ -12,6 +12,16 @@ angular.module( 'lottoApp.directives', [])
       }
     };
   })
+  .directive( 'ballCombi', function () {
+    return {
+      restrict: 'E',
+      templateUrl: '../../templates/components/ball-combi.html',
+      scope: {
+        combis: '=',
+        addZero: '='
+      }
+    };
+  })
   .directive( 'actionButtons', function () {
     return {
       restrict: 'E',

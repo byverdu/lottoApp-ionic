@@ -35,12 +35,11 @@ angular.module( 'lottoApp.controllers' )
     $stateParams
   ) {
     const winCtrl = $scope;
-    winCtrl.raffle = sharedData.getData();
-    const lottoID = $stateParams.lottoID;
-    console.log(lottoID);
-    httpService.getLottoById( `${lottoID}Winner` ).then( data => {
-      winCtrl.winnersData = data.data[`${lottoID}Winner`];
-      console.log(data);
+    // winCtrl.raffle = sharedData.getData();
+    winCtrl.lottoID = $stateParams.lottoID;
+    console.log(winCtrl);
+    httpService.getLottoById( `${winCtrl.lottoID}Winner` ).then( data => {
+      winCtrl.winnersData = data.data[`${winCtrl.lottoID}Winner`];
       winCtrl.tableData = Object.keys( winCtrl.winnersData.allWinners[0]);
     });
 

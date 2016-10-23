@@ -1,5 +1,5 @@
 <ion-view view-title="{{raffle.data.lottoID || 'ResultsCtrl'}}">
-  <ion-content class="padding">
+  <ion-content class="padding"  scrollbar-y="false">
     <card-ball
       title="Last Result"
       card-balls="raffle.lastResult"
@@ -22,13 +22,10 @@
           class="resultsPage__item item"
           ng-repeat="combis in raffle.combinations"
           id="{{'id_'+$index}}">
-          <section class="stage" ng-repeat="number in combis">
-            <figure class="ball">
-            </figure>
-            <span class="resultsPage__item--combi ball{{number.isChecked ? '--active' : '--unactive'}}">
-              {{addStringZero(number.ballValue)}}
-            </span>
-          </section>
+          <ball-combi
+            combis="combis"
+            add-zero="addStringZero"
+          ></ball-combi>
           <button
             class="button button-assertive button-small"
             ng-click="deleteCombiFromStore($index)">
