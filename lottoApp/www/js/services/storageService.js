@@ -19,9 +19,14 @@ angular.module( 'lottoApp.services' )
       return $localStorage[lottoID];
     }
 
+    function removeItemForId( lottoID, position ) {
+      return $localStorage[lottoID].splice( position, 1 );
+    }
+
     return {
       setStorageForLottos,
       setStorageForId,
-      getStorageForId
+      getStorageForId,
+      removeItemForId
     };
   });

@@ -1,0 +1,45 @@
+<ion-view>
+  <ion-content class="padding">
+  <ion-nav-title>{{raffle.data.lottoID}}</ion-nav-title>
+    <div class="card">
+      <div class="item item-divider">
+        <h4>Breakdown for {{winnersData.date}}</h4>
+      </div>
+      <div class="item item-text-wrap">
+        <table class="winnersTable">
+          <thead>
+            <th ng-repeat="heading in tableData">
+              {{heading}}
+            </th>
+          </thead>
+          <tbody>
+            <tr ng-repeat="winners in winnersData.allWinners">
+              <td>
+                {{winners.category}}
+              </td>
+              <td>
+                {{winners.winners}}
+              </td>
+              <td ng-if="winners.spanish">
+                {{winners.spanish}}
+              </td>
+              <td>
+                {{winners.price}}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card">
+      <div ng-repeat="extra in winnersData.extraInfo">
+        <div ng-if="$even" class="item item-divider">
+          <h2>{{extra}}</h2>
+        </div>
+        <div ng-if="$odd" class="item item-text-wrap">
+          <p>{{extra}}</p>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

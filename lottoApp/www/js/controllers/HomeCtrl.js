@@ -5,4 +5,5 @@ angular.module( 'lottoApp.controllers' )
     httpService.getLottos().then( data => {
       $scope.lottos = data.data.lottos;
     });
+
   });

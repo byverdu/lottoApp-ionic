@@ -27,4 +27,14 @@ angular.module( 'lottoApp.directives', [])
         countBalls: '='
       }
     };
+  })
+  .filter( 'addStringZero', function () {
+    return function ( array ) {
+      if ( array === undefined ) {
+        return [];
+      }
+      return array.map( ball => {
+        return ball <= 9 ? `0${ball}` : ball;
+      });
+    };
   });

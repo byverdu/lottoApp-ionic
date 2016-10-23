@@ -4,23 +4,24 @@ Each tab's child <ion-nav-view> directive will have its own
 navigation history that also transitions its views in and out.
 -->
 <ion-tabs class="tabs-icon-top tabs-color-active-positive">
-  <ion-tab title="Lottos" icon-off="ion-ios-arrow-back" href="#/lottoApp/home">
+  <ion-tab title="Lottos" icon-off="ion-ios-arrow-back" href="#/lottoApp/">
     <ion-nav-view name="tab-home"></ion-nav-view>
   </ion-tab>
   <!-- Dashboard Tab -->
-  <ion-tab title="Raffle" icon-off="ion-ios-home-outline" icon-on="ion-ios-home" href="#/lottoApp/raffle/dash">
+  <ion-tab title="Raffle" icon-off="ion-ios-home-outline" icon-on="ion-ios-home" href="#/lottoApp/{{lottoID}}/rafle">
     <ion-nav-view name="tab-raffle"></ion-nav-view>
   </ion-tab>
 
   <!-- Chats Tab -->
-  <ion-tab title="Chats" icon-off="ion-ios-chatboxes-outline" icon-on="ion-ios-chatboxes" href="#/lottoApp/raffle/chats">
-    <ion-nav-view name="tab-chats"></ion-nav-view>
+  <ion-tab title="Results" icon-off="ion-ios-heart-outline" icon-on="ion-ios-heart" href="#/lottoApp/{{lottoID}}/results">
+    <ion-nav-view name="tab-results"></ion-nav-view>
   </ion-tab>
 
   <!-- Account Tab -->
-  <ion-tab title="Account" icon-off="ion-ios-gear-outline" icon-on="ion-ios-gear" href="#/lottoApp/raffle/account">
-    <ion-nav-view name="tab-account"></ion-nav-view>
+  <ion-tab title="Stats" icon-off="ion-ios-pulse" icon-on="ion-ios-pulse-strong" href="#/lottoApp/{{lottoID}}/stats">
+    <ion-nav-view name="tab-stats"></ion-nav-view>
   </ion-tab>
-
-
+  <ion-tab title="Winners" icon-off="ion-ios-pie" icon-on="ion-ios-pie-outline" href="#/lottoApp/{{lottoID}}/win">
+    <ion-nav-view name="tab-win"></ion-nav-view>
+  </ion-tab>
 </ion-tabs>

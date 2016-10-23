@@ -1,9 +1,10 @@
-<ion-view view-title="{{raffle.data.lottoID}}">
+<ion-view>
+  <ion-nav-title>{{raffle.data.lottoID}}</ion-nav-title>
   <ion-content class="padding">
-    <h2>{{raffle.data.lottoID}} {{combinations.length}}</h2>
+    <h2>{{raffle.data.lottoID}} {{raffle.combinations.length}}</h2>
     <card-ball
       title="Most repeated"
-      card-balls="raffle.data.mostRepeated"
+      card-balls="raffle.mostRepeated"
       is-toggle-card="true"
     ></card-ball>
     <span ng-repeat="ball in raffle.totalBalls">
@@ -17,13 +18,13 @@
       class="homeLottoPage--{{ball.isChecked ? 'isChecked' : 'nop'}}"
       for="id_{{ball.ballValue}}">
       <span class="homeLottoPage__item--number">
-        {{ball.ballValue}}
+        {{addStringZero(ball.ballValue)}}
       </span>
     </label>
     </span>
     <hr>
-    <span ng-repeat="combi in raffle.combiToSave">
-      {{combi.ballValue > 0 ? combi.ballValue : ''}}
+    <span ng-repeat="combi in raffle.combiToSave | orderBy:'ballValue' track by $index ">
+      {{addStringZero(combi.ballValue)}}
     </span>
     <action-buttons
       first-call="getRandomBallsByLotto()"

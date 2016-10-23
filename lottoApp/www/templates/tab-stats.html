@@ -1,0 +1,36 @@
+<ion-view>
+  <ion-content class="padding">
+  <ion-nav-title>{{raffle.data.lottoID}}</ion-nav-title>
+    <div class="card statsPage">
+      <div class="item item-divider">
+        <h2>Statistics for last {{raffle.data.statistics.length}} raffles</h2>
+      </div>
+      <div class="item item-text-wrap">
+        <div class="button-bar bar-positive">
+          <button
+            ng-click="sortByIndexOrCount('index')"
+            class="button">
+              Sort by index
+          </button>
+          <button
+            ng-click="sortByIndexOrCount('count')"
+            class="button">
+              Sort by count
+          </button>
+        </div>
+      </div>
+      <div class="item item-text-wrap">
+        <section class="stage statsPage__item" ng-repeat="stat in raffle.data.statistics">
+          <figure class="ball ball--{{stat.color}}">
+          </figure>
+          <span class="statsPage__item--combi">
+            {{stat.index}}
+          </span>
+          <b class="statsPage__item--count">
+            {{addStringZero(stat.count)}}
+          </b>
+        </section>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

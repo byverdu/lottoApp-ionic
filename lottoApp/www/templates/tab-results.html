@@ -1,0 +1,40 @@
+<ion-view view-title="{{raffle.data.lottoID || 'ResultsCtrl'}}">
+  <ion-content class="padding">
+    <card-ball
+      title="Last Result"
+      card-balls="raffle.lastResult"
+      is-toggle-card="true"
+    ></card-ball>
+    <action-buttons
+      first-call="compareLastResultWithSaved()"
+      first-text="Check Raffles"
+      second-call="clearCompared()"
+      second-text="Clear"
+      count-checked="1"
+    ></action-buttons>
+  </div>
+  <ul class="list">
+        <li class="item item-divider">
+          Showing {{containsMatched.length > 0 ? containsMatched.length : raffle.combinations.length}} of {{raffle.combinations.length}}
+        </li>
+        <li
+          ng-show="containsMatched.length === 0 || containsMatched.indexOf($index) !== -1"
+          class="resultsPage__item item"
+          ng-repeat="combis in raffle.combinations"
+          id="{{'id_'+$index}}">
+          <section class="stage" ng-repeat="number in combis">
+            <figure class="ball">
+            </figure>
+            <span class="resultsPage__item--combi ball{{number.isChecked ? '--active' : '--unactive'}}">
+              {{addStringZero(number.ballValue)}}
+            </span>
+          </section>
+          <button
+            class="button button-assertive button-small"
+            ng-click="deleteCombiFromStore($index)">
+            Delete
+          </button>
+        </li>
+    </ul>
+  </ion-content>
+</ion-view>

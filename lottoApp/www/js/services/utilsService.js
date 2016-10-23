@@ -66,10 +66,24 @@ angular.module( 'lottoApp.services' )
       return result.sort(( a, b ) => a.ballValue - b.ballValue );
     }
 
+    function stringsToNumbers( singleString ) {
+      const tempArray = singleString.split( ',' );
+      return tempArray.map( item => Number( item ));
+    }
+
+    function addStringZero ( ball ) {
+      if ( ball === 0 ) {
+        return '';
+      }
+      return ball <= 9 ? `0${ball}` : ball;
+    }
+
     return {
       BallModel,
       getCountBalls,
       setArrayForBall,
-      getRandomBallsByLotto
+      getRandomBallsByLotto,
+      stringsToNumbers,
+      addStringZero
     };
   });
