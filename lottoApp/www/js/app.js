@@ -66,6 +66,15 @@ angular.module( 'lottoApp', moduleDepen )
         controller: 'StatsCtrl'
       }
     }
+  })
+  .state( 'tab.win', {
+    url: '/win',
+    views: {
+      'tab-win': {
+        templateUrl: 'templates/tab-win.html',
+        controller: 'WinCtrl'
+      }
+    }
   });
 
   // if none of the above states are matched, use this as the fallback
