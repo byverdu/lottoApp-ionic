@@ -4,9 +4,10 @@ angular.module( 'lottoApp.directives', [])
   .directive( 'cardBall', function () {
     return {
       restrict: 'E',
-      templateUrl: '../../templates/components/card-ball.html',
+      templateUrl: 'templates/components/card-ball.html',
       scope: {
         title: '@',
+        date: '=',
         cardBalls: '=',
         isToggleCard: '='
       }
@@ -15,7 +16,7 @@ angular.module( 'lottoApp.directives', [])
   .directive( 'ballCombi', function () {
     return {
       restrict: 'E',
-      templateUrl: '../../templates/components/ball-combi.html',
+      templateUrl: 'templates/components/ball-combi.html',
       scope: {
         combis: '=',
         addZero: '='
@@ -25,7 +26,7 @@ angular.module( 'lottoApp.directives', [])
   .directive( 'actionButtons', function () {
     return {
       restrict: 'E',
-      templateUrl: '../../templates/components/action-buttons.html',
+      templateUrl: 'templates/components/action-buttons.html',
       scope: {
         firstCall: '&',
         firstText: '@',
