@@ -1,0 +1,23 @@
+{
+  "name": "lottoappionic",
+  "version": "1.0.0",
+  "description": "ionic app for the famous lottoapp",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/byverdu/lottoApp-ionic.git"
+  },
+  "author": "Albert Vallverdu <byverdu@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/byverdu/lottoApp-ionic/issues"
+  },
+  "homepage": "https://github.com/byverdu/lottoApp-ionic#readme",
+  "devDependencies": {
+    "express": "^4.15.4"
+  }
+}
