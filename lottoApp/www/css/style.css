@@ -1,10 +1,38 @@
 /* Empty. Add your own CSS if you like */
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans|Lobster+Two');
 
 input[type="checkbox"] {
   visibility: hidden;
 }
 .tabs {
   bottom: 24px !important
+}
+
+.lottoApp {
+  display: flex;
+  flex-wrap: wrap;
+  overflow-y: scroll;
+  height: 100vh;
+}
+
+.lottoApp__title {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px 50px;
+  justify-content: space-evenly;
+  height: 50vh;
+  margin: 0 auto;
+}
+
+.lottoApp__title p {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 24px;
+}
+
+.lottoApp__title h1 {
+  font-family: 'Lobster Two', cursive;
+  font-size: 75px;
 }
 
 .winnersTable {
@@ -220,7 +248,7 @@ input[type="checkbox"] {
 }
 
 .has-header {
-  top: 20px;
+  /* top: 20px; */
 }
 
 .item-note {
@@ -231,4 +259,35 @@ input[type="checkbox"] {
 .item.item-divider .badge {
   top: 5px;
   right: 5px;
+}
+
+.wrapper {
+  margin: 0 auto;
+  position: relative;
+  width: 360px;
+  height: 100vh;
+}
+
+.wrapper-img {
+  margin: 0 auto;
+  display: block;
+  height: 95vh;
+  position: absolute;
+  top: 15px;
+}
+
+.nav-bar-block,
+.view-container {
+  width: 325px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.bar-header {
+  top: 95px;
+}
+
+.view-container {
+  height: 73vh;
+  top: 95px;
 }
