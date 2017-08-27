@@ -1,9 +1,8 @@
 /* Empty. Add your own CSS if you like */
 @import url('https://fonts.googleapis.com/css?family=Josefin+Sans|Lobster+Two');
 
-
-.tabs {
-  bottom: 24px !important
+.homeLottoPage__cardBalls .item-body {
+  padding: 6px !important;
 }
 
 .lottoApp {
@@ -163,7 +162,7 @@
 .homeLottoPage__item {
   display: inline-block;
   position: relative;
-  margin: 0;
+  margin: 1px;
 }
 .homeLottoPage__item:last-child {
   margin-left: 0;
@@ -212,16 +211,26 @@
 }
 .resultsPage__item .stage {
   margin: 0 auto;
-  height: 35px;
+  height: 30px;
+  width: 30px;
   margin: 0 2px;
   /*display: inline-block*/
 }
+.resultsPage__item .ball {
+  height: 30px;
+  width: 30px;
+}
+
+.resultsPage__item button {
+  margin-left: 20px;
+}
+
 .resultsPage__item--combi {
   position: absolute;
-  top: 7px;
+  top: 5px;
   color: white;
   width: 20px;
-  left: 9px;
+  left: 7px;
 }
 
 .statsPage__item {
@@ -250,13 +259,13 @@
   left: 3px;
 }
 
-.has-header {
-  /* top: 20px; */
+.card-last-result{
+  display: flex;
 }
 
 .item-note {
   float: none;
-  margin-left: 60px;
+  margin-left: 40px;
 }
 
 .item.item-divider .badge {
