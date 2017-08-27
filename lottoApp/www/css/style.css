@@ -1,10 +1,40 @@
 /* Empty. Add your own CSS if you like */
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans|Lobster+Two');
 
-input[type="checkbox"] {
-  visibility: hidden;
+.homeLottoPage__cardBalls .item-body {
+  padding: 6px !important;
 }
-.tabs {
-  bottom: 24px !important
+
+.lottoApp {
+  display: flex;
+  flex-wrap: wrap;
+  overflow-y: scroll;
+  height: 100vh;
+  flex-direction: row;
+}
+
+.lottoApp__title {
+  display: flex;
+  flex-direction: column;
+  padding: 0 50px;
+  justify-content: center;
+  /* height: 50vh; */
+  margin: 0 auto;
+}
+
+.lottoApp__title p {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 24px;
+  text-align: left;
+  margin: 20px 0;
+}
+
+.lottoApp__title h1 {
+  font-family: 'Lobster Two', cursive;
+  font-size: 120px;
+  text-shadow: 0px 2px 8px rgb(239,71,58);
+  animation: neon 5s linear infinite alternate;
+  text-align: center;
 }
 
 .winnersTable {
@@ -132,7 +162,7 @@ input[type="checkbox"] {
 .homeLottoPage__item {
   display: inline-block;
   position: relative;
-  margin: 0;
+  margin: 1px;
 }
 .homeLottoPage__item:last-child {
   margin-left: 0;
@@ -181,16 +211,26 @@ input[type="checkbox"] {
 }
 .resultsPage__item .stage {
   margin: 0 auto;
-  height: 35px;
+  height: 30px;
+  width: 30px;
   margin: 0 2px;
   /*display: inline-block*/
 }
+.resultsPage__item .ball {
+  height: 30px;
+  width: 30px;
+}
+
+.resultsPage__item button {
+  margin-left: 20px;
+}
+
 .resultsPage__item--combi {
   position: absolute;
-  top: 7px;
+  top: 5px;
   color: white;
   width: 20px;
-  left: 9px;
+  left: 7px;
 }
 
 .statsPage__item {
@@ -219,16 +259,73 @@ input[type="checkbox"] {
   left: 3px;
 }
 
-.has-header {
-  top: 20px;
+.card-last-result{
+  display: flex;
 }
 
 .item-note {
   float: none;
-  margin-left: 60px;
+  margin-left: 40px;
 }
 
 .item.item-divider .badge {
   top: 5px;
   right: 5px;
+}
+
+.wrapper {
+  margin: 0 auto;
+  position: relative;
+  width: 360px;
+  height: 100vh;
+  display: flex;
+}
+
+.nav-bar-container {
+  position: absolute;
+  top: -92px;
+}
+
+.wrapper-img {
+  margin: 0 auto;
+  position: absolute;
+  width: 364px;
+  align-self: center;
+}
+
+.nav-bar-block,
+.view-container {
+  width: 325px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.bar-header {
+  top: 95px;
+}
+
+.view-container {
+  height: 560px;
+  align-self: center;
+}
+
+.app-content {
+  align-items: center;
+  display: flex;
+  left: 17px;
+}
+
+.app-content input[type="checkbox"] {
+  visibility: hidden !important;
+}
+@keyframes neon {
+  0% {
+    text-shadow: 0px 2px 8px rgb(239,71,58);
+  }
+  50% {
+    text-shadow: -5px 2px 8px rgb(239,71,58);
+  }
+  100% {
+    text-shadow: 5px 2px 8px rgb(239,71,58);
+  }
 }
